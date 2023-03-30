@@ -3,7 +3,10 @@
     <h2>
       <NuxtLink :to="`/${post.slug}`" class="post-nav">{{ post.title }}</NuxtLink>
     </h2>
-    <small class="label-light">29 March 2023 | George Bush</small>
+    <small class="label-light">
+      {{ post.pub_date.substring(0, 10) }}
+      <span v-if="post.owner">| {{ post.owner.firstname }} {{ post.owner.lastname }}</span>
+    </small>
     <p>
       {{ post.short_description }}
       <br>

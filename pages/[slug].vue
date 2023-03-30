@@ -9,10 +9,15 @@
       </div>
       </v-col>
       <v-col cols="12" xl="4" lg="4" md="4" sm="4">
-       <div class="text-center bg-teal-lighten-5">
-         <h4>Recent Posts</h4>
-         <hr>
-       </div>
+       <v-card class="text-center" title="Other Posts">
+         <div class="text-left px-5 py-2">
+            <div v-for="post in posts.slice(0, 5)">
+              <NuxtLink :to="`/${post.slug}`" style="text-decoration: none; cursor: pointer; color: teal">
+                  {{ post.title }}
+              </NuxtLink>
+           </div>
+         </div>
+       </v-card>
       </v-col>
     </v-row>
   </v-container>
@@ -23,6 +28,7 @@ import {useFetch, useRoute} from "nuxt/app";
 
 const {slug} = useRoute().params
 const { data: post } = await useFetch(`http://127.0.0.1:8000/api/posts/${slug}/`)
+const { data: posts } = await useFetch('http://127.0.0.1:8000/api/posts/')
 </script>
 
 <style scoped>
