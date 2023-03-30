@@ -12,7 +12,7 @@
           ></v-img>
         </template>
 
-        <v-app-bar-title>Blogrr</v-app-bar-title>
+        <v-app-bar-title style="cursor: pointer" @click="$router.push('/')">Blogrr</v-app-bar-title>
 
         <v-spacer></v-spacer>
 

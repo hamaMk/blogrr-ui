@@ -3,9 +3,9 @@
     <v-row>
       <v-col cols="12" xl="8" lg="8" md="8" sm="8">
       <div class="">
-        <div v-for="post in posts">
-            <BlogPost :post="post"/>
-        </div>
+        <h1>{{ post.title }}</h1>
+        <hr>
+        <div v-html="post.content" class="mt-10"></div>
       </div>
       </v-col>
       <v-col cols="12" xl="4" lg="4" md="4" sm="4">
@@ -19,10 +19,10 @@
 </template>
 
 <script setup>
-import BlogPost from "../components/BlogPost";
-import {useFetch} from "nuxt/app";
+import {useFetch, useRoute} from "nuxt/app";
 
-const { data: posts } = await useFetch('http://127.0.0.1:8000/api/posts/')
+const {slug} = useRoute().params
+const { data: post } = await useFetch(`http://127.0.0.1:8000/api/posts/${slug}/`)
 </script>
 
 <style scoped>
